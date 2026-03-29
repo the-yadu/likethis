@@ -21,15 +21,29 @@ export const CATEGORY_DESCRIPTIONS: Record<Category, string> = {
 export const TEMPLATES: Template[] = [
   // Family Photos
   {
+    id: "family-0",
+    name: "Happy family",
+    description: "Elegant studio family portrait with professional lighting",
+    category: "family",
+    imageUrl: "/templates/family-0.avif",
+    styleImageUrl:
+      "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80",
+    prompt:
+      "The scene is a professional studio family portrait: smooth gray background, " +
+      "soft studio lighting, formal clothing (dark suit for father, elegant dress for mother, " +
+      "smart outfit for child). Poses: father standing at back, mother seated, child in front.",
+  },
+  {
     id: "family-1",
     name: "Golden Hour Family",
     description: "Warm family portrait bathed in golden sunset light",
     category: "family",
-    imageUrl: "/templates/family-1.svg",
+    imageUrl: "/templates/family-1.jpeg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80",
     prompt:
-      "A warm, joyful family portrait in golden hour sunlight, professional photography, beautiful bokeh background, high quality, photorealistic img",
+      "The scene is a warm golden-hour outdoor family portrait: soft backlit sunset glow, " +
+      "lush blurred background, relaxed natural poses, casual elegant clothing.",
   },
   {
     id: "family-2",
@@ -40,7 +54,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?w=800&q=80",
     prompt:
-      "A candid family photo in a lush green park, natural daylight, joyful expressions, photorealistic, high detail img",
+      "The scene is a candid family photo in a lush green park: natural daylight, " +
+      "greenery in background, joyful relaxed expressions, casual clothing.",
   },
   {
     id: "family-3",
@@ -51,7 +66,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=800&q=80",
     prompt:
-      "A cozy family portrait indoors, soft natural window light, warm tones, intimate atmosphere, photorealistic img",
+      "The scene is a cozy indoor family portrait: soft natural window light, warm tones, " +
+      "comfortable home setting, intimate atmosphere, casual clothing.",
   },
   {
     id: "family-4",
@@ -62,7 +78,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80",
     prompt:
-      "A beautiful family photo surrounded by spring cherry blossoms, soft pink light, professional photography, photorealistic img",
+      "The scene is a beautiful spring family photo: cherry blossom trees, soft pink light, " +
+      "romantic floral backdrop, elegant casual clothing.",
   },
 
   // Self Portraits
@@ -75,7 +92,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
     prompt:
-      "A professional studio headshot portrait, perfect studio lighting, clean background, sharp focus, ultra high quality, photorealistic img",
+      "The scene is a professional studio headshot: clean neutral background, " +
+      "perfect three-point studio lighting, sharp focus, formal or smart-casual attire.",
   },
   {
     id: "portrait-2",
@@ -86,7 +104,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80",
     prompt:
-      "A gorgeous natural light portrait, soft diffused sunlight, beautiful bokeh, genuine smile, high quality photography img",
+      "The scene is a natural light portrait: soft diffused window light, " +
+      "beautiful background bokeh, genuine relaxed expression, casual clothing.",
   },
   {
     id: "portrait-3",
@@ -97,7 +116,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80",
     prompt:
-      "A stylish urban portrait, city backdrop, editorial photography, sharp and detailed, modern aesthetic, photorealistic img",
+      "The scene is a stylish urban portrait: city street backdrop, editorial lighting, " +
+      "modern aesthetic, confident pose, smart casual clothing.",
   },
   {
     id: "portrait-4",
@@ -108,7 +128,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=800&q=80",
     prompt:
-      "An ethereal portrait in a lush green forest, dappled light, magical atmosphere, high quality photography, photorealistic img",
+      "The scene is an ethereal forest portrait: lush green forest backdrop, " +
+      "dappled natural light, magical atmosphere, flowing casual clothing.",
   },
 
   // Vacation Photos
@@ -121,7 +142,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80",
     prompt:
-      "A stunning tropical beach vacation photo, crystal clear turquoise water, white sand, vibrant colors, photorealistic img",
+      "The scene is a tropical beach vacation: crystal turquoise water, white sand, " +
+      "bright sunshine, summer clothing (swimwear or light casual).",
   },
   {
     id: "vacation-2",
@@ -132,7 +154,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
     prompt:
-      "An epic mountain adventure photo, dramatic alpine scenery, clear blue sky, professional travel photography, photorealistic img",
+      "The scene is an epic mountain adventure: dramatic alpine scenery, clear blue sky, " +
+      "outdoor adventure clothing, wide panoramic vista.",
   },
   {
     id: "vacation-3",
@@ -143,7 +166,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
     prompt:
-      "A charming European city vacation photo, beautiful architecture, golden hour, travel photography, photorealistic img",
+      "The scene is a charming European city vacation: beautiful cobblestone streets, " +
+      "golden hour light, historic architecture, smart casual travel clothing.",
   },
   {
     id: "vacation-4",
@@ -154,7 +178,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
     prompt:
-      "A magical safari vacation photo at sunset, African savanna, golden light, adventurous atmosphere, photorealistic img",
+      "The scene is a magical safari at sunset: African savanna, golden warm light, " +
+      "acacia trees silhouetted, safari/adventure clothing.",
   },
 
   // Cinematic
@@ -167,7 +192,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80",
     prompt:
-      "A dramatic film noir style cinematic photo, high contrast shadows, moody atmosphere, cinematic color grading, photorealistic img",
+      "The scene is a dramatic film noir cinematic shot: high contrast shadows, " +
+      "moody dark atmosphere, black and white or desaturated color grading.",
   },
   {
     id: "cinematic-2",
@@ -178,7 +204,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&q=80",
     prompt:
-      "An epic Hollywood blockbuster style cinematic photo, dramatic lighting, lens flare, cinematic wide angle, ultra high quality photorealistic img",
+      "The scene is an epic Hollywood blockbuster cinematic shot: dramatic hero lighting, " +
+      "lens flare, wide-angle composition, action movie color grading.",
   },
   {
     id: "cinematic-3",
@@ -189,7 +216,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1493514789931-586cb221d7a7?w=800&q=80",
     prompt:
-      "A vibrant neon-lit night city scene, colorful reflections, cyberpunk atmosphere, cinematic color grading, photorealistic img",
+      "The scene is a vibrant neon-lit night city: colorful neon signs reflecting on wet pavement, " +
+      "cyberpunk atmosphere, dramatic color contrast.",
   },
   {
     id: "cinematic-4",
@@ -200,7 +228,8 @@ export const TEMPLATES: Template[] = [
     styleImageUrl:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
     prompt:
-      "A sweeping epic cinematic landscape, golden hour light, dramatic clouds, widescreen composition, photorealistic img",
+      "The scene is a sweeping epic cinematic landscape: golden hour light, " +
+      "dramatic storm clouds, widescreen composition, epic scale.",
   },
 ];
 
