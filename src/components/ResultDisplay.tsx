@@ -50,7 +50,7 @@ export default function ResultDisplay({
           </p>
           <div className="relative aspect-[3/4] rounded-xl overflow-hidden ring-1 ring-zinc-700">
             <Image
-              src={template.imageUrl}
+              src={template.styleImageUrl}
               alt={template.name}
               fill
               className="object-cover"

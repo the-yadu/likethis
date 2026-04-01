@@ -5,11 +5,9 @@ export interface Template {
   name: string;
   description: string;
   category: Category;
-  /** URL used to display the template in the UI (local or remote) */
-  imageUrl: string;
   /**
-   * Publicly accessible URL of the style reference image sent to the AI model.
-   * Replace these with your own hosted high-quality images for best results.
+   * Publicly accessible URL of the style reference image — used both for
+   * display in the UI and as the scene reference sent to the AI model.
    */
   styleImageUrl: string;
   prompt: string;

@@ -163,7 +163,7 @@ export default function Home() {
               <div className="flex items-center gap-4 bg-zinc-900 rounded-2xl p-4 max-w-md mx-auto border border-zinc-800">
                 <div className="relative w-16 h-20 rounded-lg overflow-hidden flex-shrink-0">
                   <Image
-                    src={selectedTemplate.imageUrl}
+                    src={selectedTemplate.styleImageUrl}
                     alt={selectedTemplate.name}
                     fill
                     className="object-cover"

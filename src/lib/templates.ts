@@ -21,26 +21,12 @@ export const CATEGORY_DESCRIPTIONS: Record<Category, string> = {
 export const TEMPLATES: Template[] = [
   // Family Photos
   {
-    id: "family-0",
-    name: "Happy family",
-    description: "Elegant studio family portrait with professional lighting",
-    category: "family",
-    imageUrl: "/templates/family-0.avif",
-    styleImageUrl:
-      "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80",
-    prompt:
-      "The scene is a professional studio family portrait: smooth gray background, " +
-      "soft studio lighting, formal clothing (dark suit for father, elegant dress for mother, " +
-      "smart outfit for child). Poses: father standing at back, mother seated, child in front.",
-  },
-  {
     id: "family-1",
     name: "Golden Hour Family",
     description: "Warm family portrait bathed in golden sunset light",
     category: "family",
-    imageUrl: "/templates/family-1.jpeg",
     styleImageUrl:
-      "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80",
+      "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
     prompt:
       "The scene is a warm golden-hour outdoor family portrait: soft backlit sunset glow, " +
       "lush blurred background, relaxed natural poses, casual elegant clothing.",
@@ -50,9 +36,8 @@ export const TEMPLATES: Template[] = [
     name: "Park Stroll",
     description: "Candid family moments in a lush green park",
     category: "family",
-    imageUrl: "/templates/family-2.svg",
     styleImageUrl:
-      "https://images.unsplash.com/photo-1536640712-4d4c36ff0e4e?w=800&q=80",
+      "https://images.unsplash.com/photo-1543342384-1f1350e27861?w=800&q=80",
     prompt:
       "The scene is a candid family photo in a lush green park: natural daylight, " +
       "greenery in background, joyful relaxed expressions, casual clothing.",
@@ -62,9 +47,8 @@ export const TEMPLATES: Template[] = [
     name: "Cozy Indoors",
     description: "Intimate family portrait with soft indoor lighting",
     category: "family",
-    imageUrl: "/templates/family-3.svg",
     styleImageUrl:
-      "https://images.unsplash.com/photo-1511895426328-dc8714191011?w=800&q=80",
+      "https://images.unsplash.com/photo-1609220136736-443140cffec6?w=800&q=80",
     prompt:
       "The scene is a cozy indoor family portrait: soft natural window light, warm tones, " +
       "comfortable home setting, intimate atmosphere, casual clothing.",
@@ -74,9 +58,8 @@ export const TEMPLATES: Template[] = [
     name: "Seasonal Bloom",
     description: "Family surrounded by spring blossoms",
     category: "family",
-    imageUrl: "/templates/family-4.svg",
     styleImageUrl:
-      "https://images.unsplash.com/photo-1588392382834-a891154bca4d?w=800&q=80",
+      "https://images.unsplash.com/photo-1581952976147-5a2d15560349?w=800&q=80",
     prompt:
       "The scene is a beautiful spring family photo: cherry blossom trees, soft pink light, " +
       "romantic floral backdrop, elegant casual clothing.",
@@ -88,7 +71,6 @@ export const TEMPLATES: Template[] = [
     name: "Studio Headshot",
     description: "Professional studio portrait with perfect lighting",
     category: "portrait",
-    imageUrl: "/templates/portrait-1.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=800&q=80",
     prompt:
@@ -100,7 +82,6 @@ export const TEMPLATES: Template[] = [
     name: "Natural Light Portrait",
     description: "Soft, flattering natural light self portrait",
     category: "portrait",
-    imageUrl: "/templates/portrait-2.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800&q=80",
     prompt:
@@ -112,7 +93,6 @@ export const TEMPLATES: Template[] = [
     name: "Urban Edge",
     description: "Stylish portrait with an urban city backdrop",
     category: "portrait",
-    imageUrl: "/templates/portrait-3.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=800&q=80",
     prompt:
@@ -124,7 +104,6 @@ export const TEMPLATES: Template[] = [
     name: "Forest Mystique",
     description: "Ethereal portrait surrounded by lush greenery",
     category: "portrait",
-    imageUrl: "/templates/portrait-4.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=800&q=80",
     prompt:
@@ -138,7 +117,6 @@ export const TEMPLATES: Template[] = [
     name: "Tropical Paradise",
     description: "Breathtaking tropical beach with crystal waters",
     category: "vacation",
-    imageUrl: "/templates/vacation-1.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1506929562872-bb421503ef21?w=800&q=80",
     prompt:
@@ -150,7 +128,6 @@ export const TEMPLATES: Template[] = [
     name: "Mountain Adventure",
     description: "Epic mountain landscape with dramatic vistas",
     category: "vacation",
-    imageUrl: "/templates/vacation-2.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&q=80",
     prompt:
@@ -162,7 +139,6 @@ export const TEMPLATES: Template[] = [
     name: "European Stroll",
     description: "Charming European city street scene",
     category: "vacation",
-    imageUrl: "/templates/vacation-3.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=800&q=80",
     prompt:
@@ -174,7 +150,6 @@ export const TEMPLATES: Template[] = [
     name: "Sunset Safari",
     description: "Magical African savanna at sunset",
     category: "vacation",
-    imageUrl: "/templates/vacation-4.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&q=80",
     prompt:
@@ -188,7 +163,6 @@ export const TEMPLATES: Template[] = [
     name: "Noir Drama",
     description: "Dramatic film noir style with moody shadows",
     category: "cinematic",
-    imageUrl: "/templates/cinematic-1.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=800&q=80",
     prompt:
@@ -200,7 +174,6 @@ export const TEMPLATES: Template[] = [
     name: "Epic Blockbuster",
     description: "Hollywood blockbuster cinematic composition",
     category: "cinematic",
-    imageUrl: "/templates/cinematic-2.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=800&q=80",
     prompt:
@@ -212,7 +185,6 @@ export const TEMPLATES: Template[] = [
     name: "Neon Nights",
     description: "Vibrant neon-lit night scene with urban energy",
     category: "cinematic",
-    imageUrl: "/templates/cinematic-3.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1493514789931-586cb221d7a7?w=800&q=80",
     prompt:
@@ -224,7 +196,6 @@ export const TEMPLATES: Template[] = [
     name: "Golden Epic",
     description: "Sweeping epic landscape with golden atmosphere",
     category: "cinematic",
-    imageUrl: "/templates/cinematic-4.svg",
     styleImageUrl:
       "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=800&q=80",
     prompt:

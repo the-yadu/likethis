@@ -46,77 +46,47 @@ export async function POST(request: NextRequest) {
     const replicate = new Replicate({ auth: apiToken });
 
     // ─────────────────────────────────────────────────────────────────────────
-    // TWO-STAGE PIPELINE
+    // SINGLE-STAGE PIPELINE — google/nano-banana-pro
     //
-    // Stage 1 — nano-banana-pro (scene generation)
-    //   First image  = template style reference  → defines scene/composition
-    //   Second image = user's real family photo  → defines body builds/count
-    //   Goal: produce a well-composed scene with correct number of people,
-    //         right poses, clothing, lighting. Faces can be approximate here.
+    // image_input[0] = template scene reference  → defines style/composition
+    // image_input[1] = user's real family photo  → defines identity & count
     //
-    // Stage 2 — fofr/face-swap-with-ideogram (face fidelity)
-    //   character_image = user's real photo      → source of exact faces
-    //   target_image    = Stage 1 output         → the scene to put faces into
-    //   Uses Ideogram's character model which handles multiple faces reliably
-    //   and preserves fine details like children's faces far better than
-    //   InsightFace-based swappers.
+    // nano-banana-pro natively attends to BOTH reference images in one pass,
+    // which preserves facial identity far better than a separate face-swap
+    // step that can mismatch faces (especially children) in group shots.
+    // Cost: ~$0.15 per 1K image — one call per request.
     // ─────────────────────────────────────────────────────────────────────────
 
-    // ── Stage 1: generate the styled scene ──────────────────────────────────
-    const stage1Prompt =
-      "Edit the first image: replace the people with the people from the second image. " +
-      "Keep the EXACT same background, studio lighting, poses, composition, and clothing style from the first image. " +
-      "The output must have EXACTLY the same number of people as the second image — no more, no less. " +
-      "Faithfully match each person's skin tone, hair color and length, and body build from the second image. " +
-      "Photorealistic, sharp focus on all subjects, no blurring, no artifacts. " +
+    const editPrompt =
+      "Using the second image as the sole identity reference, replace ALL people in the first image with the people from the second image. " +
+      "Rules:\n" +
+      "• Preserve EVERY person in the second image — exact count, no additions, no omissions.\n" +
+      "• Match each person's face (eyes, nose, mouth, jawline), skin tone, hair color/style, and body build exactly as they appear in the second image.\n" +
+      "• Faithfully replicate the background, studio/ambient lighting, poses, and clothing style from the first image.\n" +
+      "• Photorealistic output, sharp focus on all faces, no blurring or AI artifacts.\n" +
       template.prompt;
 
-    console.log("[Stage 1] Generating styled scene with nano-banana-pro...");
-    const stage1Output = await replicate.run("google/nano-banana-pro", {
+    console.log("[Generate] Running nano-banana-pro...");
+    const output = await replicate.run("google/nano-banana-pro", {
       input: {
-        prompt: stage1Prompt,
-        // First = template scene (what to edit), Second = user photo (who to put in)
+        prompt: editPrompt,
+        // [0] = style reference (what scene to render)
+        // [1] = identity reference (whose faces/bodies to use)
         image_input: [template.styleImageUrl, userImageDataUrl],
         aspect_ratio: "3:4",
-        resolution: "1K",
         output_format: "jpg",
       },
     });
 
-    const stage1Url = toUrl(stage1Output);
-    if (!stage1Url) {
+    const imageUrl = toUrl(output);
+    if (!imageUrl) {
       return NextResponse.json(
-        { error: "Stage 1 generation failed: no output received" },
+        { error: "Generation failed: no output received" },
         { status: 500 }
       );
     }
-    console.log("[Stage 1] Done:", stage1Url);
-
-    // ── Stage 2: swap in the exact real faces ────────────────────────────────
-    // fofr/face-swap-with-ideogram uses Ideogram's character model which is
-    // far more accurate than InsightFace for multiple people including children.
-    // character_image = real family photo (TRUE source of faces)
-    // target_image    = Stage 1 styled scene (receives the real faces)
-    console.log("[Stage 2] Running face swap with fofr/face-swap-with-ideogram...");
-    const stage2Output = await replicate.run("fofr/face-swap-with-ideogram", {
-      input: {
-        character_image: userImageDataUrl,
-        target_image: stage1Url,
-        // Describe the scene so Ideogram understands the context and lighting
-        prompt: template.prompt,
-        // cleanup passes output through Nano Banana to fix any seam artifacts
-        cleanup: false,
-      },
-    });
-
-    const finalUrl = toUrl(stage2Output);
-    if (!finalUrl) {
-      // Graceful fallback: return the Stage 1 result if face swap fails
-      console.warn("[Stage 2] Face swap returned no output — falling back to Stage 1 result");
-      return NextResponse.json({ imageUrl: stage1Url });
-    }
-    console.log("[Stage 2] Done:", finalUrl);
-    return NextResponse.json({ imageUrl: finalUrl });
+    console.log("[Generate] Done:", imageUrl);
+    return NextResponse.json({ imageUrl });
   } catch (err) {
     console.error("Generation error:", err);
     const message = err instanceof Error ? err.message : "Generation failed";
