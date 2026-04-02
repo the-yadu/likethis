@@ -89,9 +89,15 @@ export default function Home() {
             </div>
             <span className="text-xl font-bold tracking-tight">LikeThis</span>
           </div>
-          <p className="text-zinc-500 text-sm hidden sm:block">
-            AI-powered personalized photo generation
-          </p>
+          <a
+            href="https://buymeacoffee.com/yadu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-zinc-900 text-sm font-semibold px-4 py-2 rounded-full transition-colors"
+          >
+            <span>☕</span>
+            Buy me a coffee
+          </a>
         </div>
       </header>
 
@@ -125,7 +131,7 @@ export default function Home() {
               selectedTemplate={selectedTemplate}
               onSelect={handleTemplateSelect}
             />
-            <div className="flex justify-center pt-4">
+            <div className="flex justify-center pt-4 pb-28 sm:pb-8">
               <button
                 onClick={() => setStep(2)}
                 disabled={!selectedTemplate}
@@ -138,6 +144,53 @@ export default function Home() {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                   strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Sticky Continue Bar — visible on step 1 once a template is selected */}
+        {step === 1 && selectedTemplate && (
+          <div className="fixed bottom-0 left-0 right-0 z-50 bg-zinc-950/95 backdrop-blur-md border-t border-zinc-800 px-4 py-3 sm:py-4 animate-in slide-in-from-bottom duration-300">
+            <div className="max-w-6xl mx-auto flex items-center gap-4">
+              {/* Selected template thumbnail */}
+              <div className="relative w-10 h-12 sm:w-12 sm:h-16 rounded-lg overflow-hidden flex-shrink-0 ring-2 ring-amber-500">
+                <Image
+                  src={selectedTemplate.styleImageUrl}
+                  alt={selectedTemplate.name}
+                  fill
+                  className="object-cover"
+                  sizes="48px"
+                />
+              </div>
+              {/* Template info */}
+              <div className="flex-1 min-w-0">
+                <p className="text-zinc-400 text-xs font-medium">
+                  ✓ Template selected
+                </p>
+                <p className="text-white font-semibold text-sm sm:text-base truncate">
+                  {selectedTemplate.name}
+                </p>
+              </div>
+              {/* Continue button */}
+              <button
+                onClick={() => setStep(2)}
+                className="flex items-center gap-2 bg-amber-500 hover:bg-amber-400 active:scale-95 text-black font-bold py-3 px-6 sm:px-8 rounded-full transition-all text-sm sm:text-base shadow-lg shadow-amber-500/25 flex-shrink-0"
+              >
+                Continue
+                <svg
+                  className="w-4 h-4 sm:w-5 sm:h-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
                 >
                   <path
                     strokeLinecap="round"
@@ -344,8 +397,22 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800 py-6 text-center">
-        <p className="text-zinc-600 text-sm">
+      <footer className="border-t border-zinc-800 py-8 text-center space-y-4">
+        <div className="flex flex-col items-center gap-2">
+          <p className="text-zinc-400 text-sm">
+            Enjoying LikeThis? Help keep it running!
+          </p>
+          <a
+            href="https://buymeacoffee.com/yadu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-semibold px-5 py-2.5 rounded-full transition-colors text-sm"
+          >
+            <span className="text-base">☕</span>
+            Buy me a coffee
+          </a>
+        </div>
+        <p className="text-zinc-700 text-xs">
           LikeThis · AI-powered personalized photo generation
         </p>
       </footer>

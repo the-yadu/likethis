@@ -1,6 +1,6 @@
 "use client";
 
-import { Template, Category } from "@/types";
+import { Template, Category, Gender } from "@/types";
 import { CATEGORIES, CATEGORY_LABELS, TEMPLATES } from "@/lib/templates";
 import Image from "next/image";
 import { useState } from "react";
@@ -10,19 +10,44 @@ interface TemplateGalleryProps {
   onSelect: (template: Template) => void;
 }
 
+const GENDER_OPTIONS: Array<Gender | "all"> = ["all", "men", "women"];
+
 export default function TemplateGallery({
   selectedTemplate,
   onSelect,
 }: TemplateGalleryProps) {
   const [activeCategory, setActiveCategory] = useState<Category | "all">("all");
+  const [activeGender, setActiveGender] = useState<Gender | "all">("all");
 
-  const filtered =
-    activeCategory === "all"
-      ? TEMPLATES
-      : TEMPLATES.filter((t) => t.category === activeCategory);
+  const filtered = TEMPLATES.filter((t) => {
+    const matchesCategory =
+      activeCategory === "all" || t.category === activeCategory;
+    const matchesGender =
+      activeGender === "all" ||
+      t.gender === activeGender ||
+      t.gender === "unisex";
+    return matchesCategory && matchesGender;
+  });
 
   return (
     <div className="w-full">
+      {/* Gender Filter */}
+      <div className="flex gap-2 mb-4">
+        {GENDER_OPTIONS.map((g) => (
+          <button
+            key={g}
+            onClick={() => setActiveGender(g)}
+            className={`px-4 py-1.5 rounded-full text-sm font-medium transition-all ${
+              activeGender === g
+                ? "bg-blue-500 text-white"
+                : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
+            }`}
+          >
+            {g === "men" ? "👨 Men" : g === "women" ? "👩 Women" : "🌟 Everyone"}
+          </button>
+        ))}
+      </div>
+
       {/* Category Tabs */}
       <div className="flex flex-wrap gap-2 mb-6">
         <button
@@ -49,6 +74,14 @@ export default function TemplateGallery({
           </button>
         ))}
       </div>
+
+      {/* Empty state */}
+      {filtered.length === 0 && (
+        <div className="text-center py-12 text-zinc-500">
+          <p className="text-lg">No templates for this combination.</p>
+          <p className="text-sm mt-1">Try a different category or gender filter.</p>
+        </div>
+      )}
 
       {/* Template Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -118,6 +151,24 @@ export default function TemplateGallery({
           );
         })}
       </div>
+
+      {/* Selection hint */}
+      {!selectedTemplate ? (
+        <p className="text-center text-zinc-500 text-sm mt-6 flex items-center justify-center gap-2">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+          </svg>
+          Tap a template above to select it
+        </p>
+      ) : (
+        <p className="text-center text-amber-400/80 text-sm mt-6 flex items-center justify-center gap-2">
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Great choice! Hit <strong className="text-amber-400">Continue</strong> to upload your photo
+        </p>
+      )}
     </div>
   );
 }

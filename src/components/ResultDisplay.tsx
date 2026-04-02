@@ -75,6 +75,22 @@ export default function ResultDisplay({
         </div>
       </div>
 
+      {/* Buy Me a Coffee */}
+      <div className="w-full flex flex-col items-center gap-3 bg-zinc-900 border border-zinc-800 rounded-2xl p-5 text-center">
+        <p className="text-zinc-300 text-sm font-medium">
+          🎉 Happy with your result? Support this project!
+        </p>
+        <a
+          href="https://buymeacoffee.com/yadu"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-zinc-900 font-semibold px-6 py-2.5 rounded-full transition-colors text-sm"
+        >
+          <span className="text-base">☕</span>
+          Buy me a coffee
+        </a>
+      </div>
+
       {/* Actions */}
       <div className="flex flex-col sm:flex-row gap-3 w-full">
         <button
